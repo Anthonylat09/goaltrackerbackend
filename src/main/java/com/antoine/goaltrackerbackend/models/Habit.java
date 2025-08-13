@@ -1,5 +1,6 @@
 package com.antoine.goaltrackerbackend.models;
 
+import com.antoine.goaltrackerbackend.models.enums.ColorPalette;
 import com.antoine.goaltrackerbackend.models.enums.DaysOfTheWeek;
 import jakarta.persistence.*;
 
@@ -35,6 +36,9 @@ public class Habit {
     @ManyToOne
     @JoinColumn(name = "goal_id", nullable = false)
     private Goal goal;
+
+    @Enumerated(EnumType.STRING)
+    private ColorPalette palette = ColorPalette.BLUE;
 
     public Long getId() {
         return id;
@@ -98,5 +102,13 @@ public class Habit {
 
     public void setGoal(Goal goal) {
         this.goal = goal;
+    }
+
+    public ColorPalette getPalette() {
+        return palette;
+    }
+
+    public void setPalette(ColorPalette palette) {
+        this.palette = palette;
     }
 }

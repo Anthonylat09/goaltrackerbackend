@@ -1,5 +1,6 @@
 package com.antoine.goaltrackerbackend.models;
 
+import com.antoine.goaltrackerbackend.models.enums.ColorPalette;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,6 +25,9 @@ public class Goal {
 
     @OneToMany(mappedBy = "goal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Domain> domains;
+
+    @Enumerated(EnumType.STRING)
+    private ColorPalette palette = ColorPalette.BLUE;
 
     public Long getId() {
         return id;
@@ -63,5 +67,13 @@ public class Goal {
 
     public void setDomains(List<Domain> domains) {
         this.domains = domains;
+    }
+
+    public ColorPalette getPalette() {
+        return palette;
+    }
+
+    public void setPalette(ColorPalette palette) {
+        this.palette = palette;
     }
 }
